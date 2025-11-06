@@ -100,7 +100,7 @@ class PiFlow:
         Algorithm 3
         """
         b = z0.size(0)
-        s = torch.randint(1, self.NFE + 1, (b,)).to(z0.device) / self.NFE
+        s = torch.ones((b,)).to(z0)
 
         z1 = torch.randn_like(z0)
         zs = z1
