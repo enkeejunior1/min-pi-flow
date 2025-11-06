@@ -59,7 +59,7 @@ class PiFlow:
             if (denomi < 1e-6).any():
                 return (A_s * mu_s).sum(dim=1, keepdim=True).squeeze(1)
 
-            a_t = A_s.log() - 1/2 * F.mse_loss(nu_x, xi_x*mu_x, reduction='none').sum(dim=2, keepdim=True)
+            a_t = A_s.log() - 1/2 * F.mse_loss(nu_x, xi_x*mu_x, reduction='none').sum(dim=2, keepdim=True) / denomi
             A_t = a_t.softmax(dim=1)
 
             mu_t = (sigma_x**2 * nu_x + s**2 * t**2 * mu_x) / (sigma_x**2 * xi_x + s**2 * t**2)
